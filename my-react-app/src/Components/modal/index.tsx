@@ -5,6 +5,7 @@ import getWeatherList from '../../services/getWeatherList'
 import "./style.css"
 import { useEffect, useState } from 'react'
 import { IDataList } from '../../types/dataList.interface'
+import moment from 'moment'
 
 export const ModalDay = () => {
 
@@ -38,10 +39,6 @@ export const ModalDay = () => {
         }
     }, [response, day])
 
-    console.log(day)
-    console.log(response)
-    console.log(currentDayData)
-
     return (
         <>
             {modal?.isOpen === "true" ? (
@@ -52,11 +49,7 @@ export const ModalDay = () => {
                                 <span className="exit" onClick={() => toggleModal("false")}>❌</span>
 
                                 <div className="tempDayContainer">
-                                    <span className='tempDay'>{currentDayData[0].tempDay.toFixed(0)}°</span>
-                                    <div className='tempDayOther'>
-                                        <span >⬆{currentDayData[0].tempMax.toFixed(0)}°</span>
-                                        <span >⬇{currentDayData[0].tempMin.toFixed(0)}°</span>
-                                    </div>
+                                    <span >{moment(currentDayData[0].data).format("dddd")}</span>
                                 </div>
                                 <div className="alongTheDayContainer">
                                     {currentDayData.map((item) => (

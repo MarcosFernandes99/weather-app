@@ -48,21 +48,7 @@
     align-items: center;
     justify-content: center;
     border-bottom: 0.1rem solid white;
-}
-
-.tempDay{
-    font-size: 3rem;
-    font-weight: 800;
-    border-right: 0.1rem solid white;
-}
-
-.tempDayOther{    
-    font-size: 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 4vw;
-    color: rgb(192, 190, 190);
+    font-size: 2.5rem;
 }
 
 .alongTheDayContainer{

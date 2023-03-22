@@ -7,6 +7,7 @@ const getWeatherList = async (city: string, keyCode: string) => {
     const data : IWheatherData = response.data
     const adaptedResponse = adaptWeatherData(data)
     
+    
     return adaptedResponse
 }
 

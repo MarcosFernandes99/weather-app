@@ -26,8 +26,8 @@ export const Home = () => {
         setDataApi(filterData)
     }
 
-    const filterWeatherData = (data: any) => {
-        const filterData = data.list.reduce((result: any, item: any) => {
+    const filterWeatherData = (data: any) : IWeather => {
+        const filterData = data.list.reduce((result: IWeather, item: any) => {
             const date = item.dt_txt.split(' ')[0];
             if (!result[date]) {
                 result[date] = {
@@ -36,7 +36,15 @@ export const Home = () => {
                     temp_min: item.main.temp_min,
                     description: item.weather[0].icon,
                 };
-            }
+            } else{
+                if(item.main.temp_max > result[date].temp_max){
+                    result[date].temp_max = item.main.temp_max
+                }
+
+                if(item.main.temp_min < result[date].temp_min){
+                    result[date].temp_min = item.main.temp_min
+                }
+            } 
             return result;
         }, {});
 
@@ -58,13 +66,13 @@ export const Home = () => {
                 </div>
 
                 <h3 className='week'>Próxima semana:</h3>
-
+                
                 <div className="containerDays">
                     {Object.keys(dataApi).map((key) => {
                         const { data, description, temp_max, temp_min } = dataApi[key];
                         return (
                             <div onClick={() => toggleModal("true")} className='days' key={data}>
-                                <span onClick={() => setDay(data)} className='day'>{moment(data).format("dddd")}</span>
+                                <span onClick={() => setDay(data)} className='day'>{data.split('-').reverse().join('/')}</span>
                                 <span className='day tempMax'>⬆ {temp_max.toFixed(0)}°</span>
                                 <span className='day tempMin'>⬇ {temp_min.toFixed(0)}° </span>
                                 <span className='day'><img className='imageTemp' src={`https://openweathermap.org/img/wn/${description}@2x.png`}

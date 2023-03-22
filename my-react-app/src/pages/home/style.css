@@ -50,11 +50,17 @@ body{
     font-size: 2rem;
 }
 
+.containerDays{
+    margin-top: 2vh;
+
+}
+
 .days{
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
     align-items: center;
+    
     
 }
 .day{    
